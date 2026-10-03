@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#123B32">
+  <meta name="description" content="Mohabbat Ka Aaghaz — Ailan-e-Tareekh-e-Nikah for Ms. Alfiya Khan & Mr. Jawaad Qaazi. Jumu'ah, 27 November 2026.">
+  <title>Mohabbat Ka Aaghaz — Ailan-e-Tareekh-e-Nikah</title>
+
+  <!-- Google Fonts: Cormorant Garamond, Amiri, and Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="is-sealed">
+  <!-- Subtle ambient noise & paper texture layer via pure CSS -->
+  <div class="paper-texture-overlay" aria-hidden="true"></div>
+
+  <!-- Interactive Petals & Stardust Canvas for "Bhejiye Dua" Flower Shower -->
+  <canvas id="blessingsCanvas" class="blessings-canvas" aria-hidden="true"></canvas>
+
+  <!-- Ambient Twilight Garden Floating Petals & Stars (Pure SVG & CSS) -->
+  <div class="twilight-garden-particles" aria-hidden="true">
+    <span class="particle petal-1"></span>
+    <span class="particle petal-2"></span>
+    <span class="particle petal-3"></span>
+    <span class="particle star-glow-1"></span>
+    <span class="particle star-glow-2"></span>
+  </div>
+
+  <!-- Toast Notification Container for Dua & Actions -->
+  <div id="toastNotification" class="toast-notification" role="status" aria-live="polite">
+    <span class="toast-icon">🌸</span>
+    <span id="toastMessage" class="toast-text">Aapki dua shaamil ho gayi!</span>
+  </div>
+
+  <!-- Header Controls: Title & Compact Music Toggle Icon Only on Mobile -->
+  <header class="site-header">
+    <div class="brand-badge">
+      <span class="brand-icon">✦</span>
+      <span class="brand-text">Mohabbat Ka Aaghaz</span>
+      <span class="brand-icon">✦</span>
+    </div>
+    
+    <div class="header-actions">
+      <!-- Music Toggle Button: Clean Compact Icon Button -->
+      <button id="musicToggle" class="icon-btn music-btn" aria-label="Toggle ambient music" title="Mausiqi Shuru Karein (Toggle Music)">
+        <div class="audio-wave-bars" aria-hidden="true">
+          <span class="wave-bar bar-1"></span>
+          <span class="wave-bar bar-2"></span>
+          <span class="wave-bar bar-3"></span>
+        </div>
+        <svg class="icon-music-muted" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M9 18V5l12-2v13"></path>
+          <circle cx="6" cy="18" r="3"></circle>
+          <circle cx="18" cy="16" r="3"></circle>
+          <line x1="2" y1="2" x2="22" y2="22"></line>
+        </svg>
+        <span class="sr-only">Toggle Background Music</span>
+      </button>
+
+      <!-- Desktop-only Accessible Skip Animation Button -->
+      <button id="skipAnimationBtn" class="skip-btn desktop-only" aria-label="Skip invitation opening animation">
+        <span>Skip</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Audio Element (Will auto-play when user clicks Tap to Open) -->
+  <audio id="invitationAudio" preload="auto">
+    <source src="Din Shagna Da - Jasleen Royal.mp3" type="audio/mpeg">
+  </audio>
+
+  <main id="mainContent" class="main-wrapper">
+    <!-- ==========================================
+         MOMENT 1: OPENING INVITATION SCREEN (STRICT VIEWPORT LOCK)
+         ========================================== -->
+    <section id="momentOpening" class="moment-section moment-opening" aria-label="Invitation Envelope Screen">
+      <!-- Celestial Twilight Sky Elements (Gold crescent & tiny stars) -->
+      <div class="celestial-ornament" aria-hidden="true">
+        <svg class="sky-svg" viewBox="0 0 400 170" fill="none">
+          <path class="crescent-moon" d="M200 24 C222 24 238 38 242 56 C232 46 218 42 204 44 C184 47 170 66 172 86 C174 104 188 120 208 122 C222 123 234 116 242 106 C236 122 219 134 200 134 C169.6 134 145 109.4 145 79 C145 48.6 169.6 24 200 24 Z" fill="url(#goldGradient)" />
+          
+          <g class="celestial-star star-1">
+            <path d="M120 50 L122 56 L128 58 L122 60 L120 66 L118 60 L112 58 L118 56 Z" fill="#B9914B" />
+          </g>
+          <g class="celestial-star star-2">
+            <path d="M280 44 L282 50 L288 52 L282 54 L280 60 L278 54 L272 52 L278 50 Z" fill="#E2C889" />
+          </g>
+          <g class="celestial-star star-3">
+            <circle cx="95" cy="85" r="1.8" fill="#E2C889" opacity="0.9" />
+          </g>
+          <g class="celestial-star star-4">
+            <circle cx="305" cy="78" r="1.8" fill="#E2C889" opacity="0.9" />
+          </g>
+          <g class="celestial-star star-5">
+            <path d="M200 6 L201.5 10 L205.5 11.5 L201.5 13 L200 17 L198.5 13 L194.5 11.5 L198.5 10 Z" fill="#E2C889" />
+          </g>
+
+          <defs>
+            <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#FFF2CA" />
+              <stop offset="45%" stop-color="#E2C889" />
+              <stop offset="85%" stop-color="#B9914B" />
+              <stop offset="100%" stop-color="#8C682A" />
+            </linearGradient>
+          </defs>
+        </svg>
+
+        <!-- Monogram Stroke Animation (A ♥ J) -->
+        <div class="monogram-banner">
+          <svg class="monogram-stroke-svg" viewBox="0 0 160 50" aria-label="A heart J monogram">
+            <path class="draw-stroke letter-a" d="M30 42 L48 10 L66 42 M38 31 L58 31" fill="none" stroke="#E2C889" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path class="draw-stroke heart-symbol" d="M78 24 C78 17 84 13 90 17 C96 21 100 27 80 40 C60 27 64 21 70 17 C76 13 78 17 78 24 Z" fill="none" stroke="#C99B91" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+            <path class="draw-stroke letter-j" d="M104 10 L126 10 M117 10 L117 34 C117 40 110 42 104 38" fill="none" stroke="#E2C889" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Sacred Intro Lines -->
+      <div class="opening-intro-text">
+        <p class="bismillah-arabic" lang="ar" dir="rtl">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</p>
+        <p class="bismillah-translit">Bismillah-ir-Rahman-ir-Raheem</p>
+        <p class="intro-subline">Ek khoobsurat rishte ki ibtida</p>
+      </div>
+
+      <!-- Centered 3D Envelope Experience with Gyroscope & Parallax -->
+      <div class="envelope-stage" id="envelopeTiltWrapper">
+        <div id="envelope3D" class="envelope-card-container">
+          <!-- Back Interior & Base -->
+          <div class="envelope-back">
+            <div class="envelope-interior-pattern"></div>
+          </div>
+
+          <!-- The Royal Card (nested inside, rises majestically upon opening) -->
+          <div id="nestedCard" class="invitation-folded-card">
+            <div class="card-inner-ornament" aria-hidden="true">
+              <svg class="arch-border-svg" viewBox="0 0 340 480" fill="none">
+                <rect x="10" y="10" width="320" height="460" rx="4" stroke="#B9914B" stroke-width="1.2" stroke-dasharray="6 3" opacity="0.6" />
+                <path d="M16 16 C26 18 34 26 36 36 M16 16 C18 26 26 34 36 36" stroke="#B9914B" stroke-width="1.2" fill="none" />
+                <path d="M324 16 C314 18 306 26 304 36 M324 16 C322 26 314 34 304 36" stroke="#B9914B" stroke-width="1.2" fill="none" />
+                <path class="mughal-cusp" d="M40 100 C40 60 70 30 110 30 C130 30 150 42 170 20 C190 42 210 30 230 30 C270 30 300 60 300 100" stroke="#B9914B" stroke-width="1.5" fill="none" />
+              </svg>
+            </div>
+            
+            <div class="folded-card-preview">
+              <span class="preview-mini-heading">Ailan-e-Tareekh-e-Nikah</span>
+              <span class="preview-names">Alfiya & Jawaad</span>
+            </div>
+          </div>
+
+          <!-- Pocket Folds -->
+          <div class="envelope-left-fold"></div>
+          <div class="envelope-right-fold"></div>
+          
+          <!-- Bottom Front Pocket with Gold Arabesque -->
+          <div class="envelope-bottom-pocket">
+            <svg class="pocket-gold-filigree" viewBox="0 0 340 150" fill="none" aria-hidden="true">
+              <path d="M0 150 L170 30 L340 150" stroke="#B9914B" stroke-width="1.5" opacity="0.7" />
+              <path d="M150 50 C160 40 170 35 170 35 C170 35 180 40 190 50" stroke="#B9914B" stroke-width="1.2" />
+              <circle cx="170" cy="52" r="3" fill="#B9914B" />
+            </svg>
+          </div>
+
+          <!-- Top Envelope Flap with 3D Flip -->
+          <div id="envelopeFlap" class="envelope-flap-top">
+            <svg class="flap-svg" viewBox="0 0 340 160" preserveAspectRatio="none">
+              <path d="M0 0 L170 155 L340 0 Z" fill="#F7F2E8" stroke="#B9914B" stroke-width="1.4" />
+              <path d="M20 5 L170 140 L320 5" stroke="#B9914B" stroke-width="0.8" stroke-dasharray="4 2" fill="none" opacity="0.7" />
+            </svg>
+          </div>
+
+          <!-- Wax Seal (Embossed Emerald & Gold Monogram: A ♥ J) -->
+          <div id="waxSealWrapper" class="wax-seal-wrapper">
+            <div class="seal-glow-ring"></div>
+            <button id="tapToOpenBtn" class="wax-seal-btn" aria-label="Tap to Open Invitation Envelope">
+              <div class="wax-seal-body">
+                <svg class="seal-svg" viewBox="0 0 100 100">
+                  <defs>
+                    <radialGradient id="emeraldWaxGrad" cx="45%" cy="40%" r="55%">
+                      <stop offset="0%" stop-color="#1A5145" />
+                      <stop offset="60%" stop-color="#123B32" />
+                      <stop offset="100%" stop-color="#09201A" />
+                    </radialGradient>
+                    <radialGradient id="goldWaxRim" cx="50%" cy="30%" r="70%">
+                      <stop offset="0%" stop-color="#FFF2CA" />
+                      <stop offset="45%" stop-color="#E2C889" />
+                      <stop offset="85%" stop-color="#B9914B" />
+                      <stop offset="100%" stop-color="#73521E" />
+                    </radialGradient>
+                  </defs>
+
+                  <circle cx="50" cy="50" r="47" fill="url(#goldWaxRim)" filter="drop-shadow(0 3px 6px rgba(0,0,0,0.4))" />
+                  <circle cx="50" cy="50" r="41" fill="url(#emeraldWaxGrad)" stroke="#B9914B" stroke-width="1.5" />
+                  <circle cx="50" cy="50" r="37" fill="none" stroke="#E2C889" stroke-width="0.8" stroke-dasharray="2 1.5" />
+
+                  <!-- Intertwined Monogram A ♥ J -->
+                  <text x="32" y="55" font-family="'Cormorant Garamond', Georgia, serif" font-size="20" font-weight="700" fill="#E2C889" text-anchor="middle">A</text>
+                  <path d="M47 48 C47 43 51 40 55 43 C59 46 62 50 49 59 C36 50 39 46 43 43 C47 40 47 43 47 48 Z" fill="#C99B91" transform="scale(0.8) translate(12, 5)" />
+                  <text x="68" y="55" font-family="'Cormorant Garamond', Georgia, serif" font-size="20" font-weight="700" fill="#E2C889" text-anchor="middle">J</text>
+                </svg>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Button & Subtitle below Envelope -->
+      <div class="opening-actions">
+        <button id="openTriggerTextBtn" class="primary-open-btn" aria-label="Tap to Open Invitation">
+          <span class="btn-text">Tap to Open</span>
+          <svg class="btn-arrow" viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <p class="action-subtext">Mohabbat se kholiye</p>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         LOCKED CONTENT CONTAINER
+         (Hidden & unscrollable until "Tap to Open" is clicked)
+         ========================================== -->
+    <div id="invitationRevealedFlow" class="invitation-revealed-flow">
+
+      <!-- ==========================================
+           MOMENT 2: MAIN NAME REVEAL CARD
+           ========================================== -->
+      <section id="momentNames" class="moment-section moment-names" aria-label="Names and Confirmation Announcement">
+        <div class="card-display-container" id="cardTiltWrapper">
+          <!-- Botanical Corner Jasmine & Rose Sprigs -->
+          <div class="botanical-frame botanical-top-left" aria-hidden="true">
+            <svg viewBox="0 0 120 120" fill="none" class="botanical-svg grow-vine">
+              <path class="vine-path" d="M10 110 Q40 50 110 10" stroke="#123B32" stroke-width="1.5" stroke-linecap="round" />
+              <path class="bloom-petal petal-l1" d="M40 70 Q30 50 15 55 Q25 75 40 70 Z" fill="#123B32" opacity="0.85" />
+              <path class="bloom-petal petal-l2" d="M70 40 Q55 25 60 10 Q80 20 70 40 Z" fill="#123B32" opacity="0.85" />
+              <g class="bloom-flower" transform="translate(100, 20)">
+                <ellipse cx="0" cy="-8" rx="4" ry="7" fill="#F7F2E8" stroke="#B9914B" stroke-width="0.8" />
+                <ellipse cx="8" cy="-2" rx="7" ry="4" fill="#F7F2E8" stroke="#B9914B" stroke-width="0.8" />
+                <ellipse cx="5" cy="7" rx="6" ry="4" fill="#F7F2E8" stroke="#B9914B" stroke-width="0.8" />
+                <ellipse cx="-5" cy="7" rx="6" ry="4" fill="#F7F2E8" stroke="#B9914B" stroke-width="0.8" />
+                <ellipse cx="-8" cy="-2" rx="7" ry="4" fill="#F7F2E8" stroke="#B9914B" stroke-width="0.8" />
+                <circle cx="0" cy="0" r="2.5" fill="#B9914B" />
+              </g>
+            </svg>
+          </div>
+
+          <div class="botanical-frame botanical-top-right" aria-hidden="true">
+            <svg viewBox="0 0 120 120" fill="none" class="botanical-svg flip-x grow-vine">
+              <path class="vine-path" d="M10 110 Q40 50 110 10" stroke="#123B32" stroke-width="1.5" stroke-linecap="round" />
+              <path class="bloom-petal petal-r1" d="M40 70 Q30 50 15 55 Q25 75 40 70 Z" fill="#123B32" opacity="0.85" />
+              <path class="bloom-petal petal-r2" d="M70 40 Q55 25 60 10 Q80 20 70 40 Z" fill="#123B32" opacity="0.85" />
+              <g class="bloom-flower" transform="translate(98, 22)">
+                <path d="M-6 0 C-6 -8 6 -8 6 0 C6 6 0 9 -6 0 Z" fill="#C99B91" stroke="#B9914B" stroke-width="0.8" />
+                <circle cx="0" cy="0" r="2" fill="#E2C889" />
+              </g>
+            </svg>
+          </div>
+
+          <!-- The Grand Royal Announcement Card -->
+          <article class="royal-announcement-card" id="announcementCard">
+            <div class="card-svg-border-wrapper" aria-hidden="true">
+              <svg class="floral-card-border" viewBox="0 0 540 760" preserveAspectRatio="none">
+                <rect class="gold-draw-path frame-rect" x="16" y="16" width="508" height="728" rx="8" fill="none" stroke="#B9914B" stroke-width="1.5" />
+                <rect class="gold-draw-path inner-rect" x="26" y="26" width="488" height="708" rx="6" fill="none" stroke="#B9914B" stroke-width="0.8" stroke-dasharray="5 3" />
+                <path class="gold-draw-path arch-header" d="M60 120 C60 70 120 40 180 40 C220 40 250 56 270 30 C290 56 320 40 360 40 C420 40 480 70 480 120" fill="none" stroke="#B9914B" stroke-width="1.4" />
+
+                <g class="gold-corner tl" transform="translate(36, 36)">
+                  <path d="M0 0 L25 0 M0 0 L0 25 M6 6 L20 6 M6 6 L6 20" stroke="#B9914B" stroke-width="1" />
+                  <circle cx="14" cy="14" r="2" fill="#B9914B" />
+                </g>
+                <g class="gold-corner tr" transform="translate(504, 36) scale(-1, 1)">
+                  <path d="M0 0 L25 0 M0 0 L0 25 M6 6 L20 6 M6 6 L6 20" stroke="#B9914B" stroke-width="1" />
+                  <circle cx="14" cy="14" r="2" fill="#B9914B" />
+                </g>
+                <g class="gold-corner bl" transform="translate(36, 724) scale(1, -1)">
+                  <path d="M0 0 L25 0 M0 0 L0 25 M6 6 L20 6 M6 6 L6 20" stroke="#B9914B" stroke-width="1" />
+                  <circle cx="14" cy="14" r="2" fill="#B9914B" />
+                </g>
+                <g class="gold-corner br" transform="translate(504, 724) scale(-1, -1)">
+                  <path d="M0 0 L25 0 M0 0 L0 25 M6 6 L20 6 M6 6 L6 20" stroke="#B9914B" stroke-width="1" />
+                  <circle cx="14" cy="14" r="2" fill="#B9914B" />
+                </g>
+              </svg>
+            </div>
+
+            <div class="card-inner-content">
+              <header class="names-reveal-header reveal-item">
+                <span class="alhamdulillah-tag">Alhamdulillah</span>
+                <p class="alhamdulillah-subline">Tareekh-e-Nikah Tay Ho Gayi</p>
+                <div class="ornament-divider" aria-hidden="true">
+                  <span class="divider-line"></span>
+                  <span class="divider-gem">❖</span>
+                  <span class="divider-line"></span>
+                </div>
+                <h1 class="main-heading">Ailan-e-Tareekh-e-Nikah</h1>
+              </header>
+
+              <div class="couple-names-block">
+                <!-- Bride Name with Gold Foil Shimmer -->
+                <div class="person-name-wrap reveal-item">
+                  <span class="honorific">Bride</span>
+                  <h2 class="person-name bride-name shimmer-text">Ms. Alfiya Khan</h2>
+                </div>
+
+                <!-- Romantic Heart Ligature "&" -->
+                <div class="union-connector reveal-item" aria-hidden="true">
+                  <svg class="connector-heart-svg" viewBox="0 0 60 50">
+                    <path d="M30 18 C30 10 37 5 44 10 C52 16 54 25 30 42 C6 25 8 16 16 10 C23 5 30 10 30 18 Z" fill="none" stroke="#C99B91" stroke-width="1.5" />
+                    <text x="30" y="28" font-family="'Cormorant Garamond', Georgia, serif" font-size="20" font-weight="600" font-style="italic" fill="#B9914B" text-anchor="middle">&</text>
+                  </svg>
+                </div>
+
+                <!-- Groom Name with Gold Foil Shimmer -->
+                <div class="person-name-wrap reveal-item">
+                  <span class="honorific">Groom</span>
+                  <h2 class="person-name groom-name shimmer-text">Mr. Jawaad Qaazi</h2>
+                </div>
+              </div>
+
+              <footer class="names-reveal-footer reveal-item">
+                <p class="promise-tagline">Do dilon ka haseen vaada</p>
+                <div class="scroll-down-invitation" role="button" tabindex="0" aria-label="Tareekh dekhne ke liye neeche scroll karein">
+                  <span class="scroll-cue-text">Tareekh janne ke liye aage badhiye</span>
+                  <svg class="cue-arrow" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#B9914B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="7 13 12 18 17 13"></polyline>
+                    <polyline points="7 6 12 11 17 6"></polyline>
+                  </svg>
+                </div>
+              </footer>
+            </div>
+          </article>
+        </div>
+      </section>
+
+
+      <!-- ==========================================
+           MOMENT 3: DATE-REVEAL & DUA MOMENT
+           ========================================== -->
+      <section id="momentDate" class="moment-section moment-date" aria-label="Date Confirmation and Dua Section">
+        <div class="garden-scene-container">
+          <div class="garden-botanicals-left" aria-hidden="true">
+            <svg viewBox="0 0 100 240" fill="none">
+              <path d="M10 230 C25 170 5 110 35 40" stroke="#123B32" stroke-width="1.2" opacity="0.6" />
+              <path d="M22 170 C35 155 45 160 40 175 C30 185 20 180 22 170 Z" fill="#123B32" opacity="0.7" />
+              <path d="M12 110 C-2 95 0 80 15 85 C22 98 18 112 12 110 Z" fill="#123B32" opacity="0.7" />
+              <path d="M30 55 C45 45 50 55 42 65 C32 70 28 60 30 55 Z" fill="#123B32" opacity="0.7" />
+            </svg>
+          </div>
+
+          <div class="garden-botanicals-right" aria-hidden="true">
+            <svg viewBox="0 0 100 240" fill="none" class="flip-x">
+              <path d="M10 230 C25 170 5 110 35 40" stroke="#123B32" stroke-width="1.2" opacity="0.6" />
+              <path d="M22 170 C35 155 45 160 40 175 C30 185 20 180 22 170 Z" fill="#123B32" opacity="0.7" />
+              <path d="M12 110 C-2 95 0 80 15 85 C22 98 18 112 12 110 Z" fill="#123B32" opacity="0.7" />
+            </svg>
+          </div>
+
+          <div class="date-experience-wrapper">
+            <div class="date-header-group">
+              <span class="sacred-announcement-pill">Khas Tareekh Ka Aaghaz</span>
+              <p class="scratch-guidance">Aapke samne khulta hai mubarak din</p>
+            </div>
+
+            <!-- Large Elegant Heart with Interactive Scratch Layer -->
+            <div class="heart-reveal-stage">
+              <svg id="heartOutlineSvg" class="grand-heart-svg" viewBox="0 0 460 430" fill="none" aria-hidden="true">
+                <defs>
+                  <linearGradient id="heartGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#FFF2CA" />
+                    <stop offset="45%" stop-color="#E2C889" />
+                    <stop offset="85%" stop-color="#B9914B" />
+                    <stop offset="100%" stop-color="#9C7532" />
+                  </linearGradient>
+                </defs>
+
+                <path id="heartDrawPath" class="heart-draw-stroke" d="M230 120 
+                         C230 65 285 20 345 20 
+                         C405 20 445 70 445 130 
+                         C445 220 330 310 230 395 
+                         C130 310 15 220 15 130 
+                         C15 70 55 20 115 20 
+                         C175 20 230 65 230 120 Z" stroke="url(#heartGoldGrad)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+
+                <path class="heart-tendril" d="M120 24 C140 12 165 18 178 30 M150 16 C155 6 168 8 165 18" stroke="#123B32" stroke-width="1.2" opacity="0.8" />
+                <path class="heart-tendril" d="M340 24 C320 12 295 18 282 30 M310 16 C305 6 292 8 295 18" stroke="#123B32" stroke-width="1.2" opacity="0.8" />
+                <circle cx="178" cy="30" r="3" fill="#E2C889" />
+                <circle cx="282" cy="30" r="3" fill="#E2C889" />
+              </svg>
+
+              <!-- Inside the Heart: The Revealed Date Layout & Scratch Canvas -->
+              <div class="heart-inner-chamber" id="heartChamber">
+                <div class="revealed-date-content" id="revealedDateContent" aria-live="polite">
+                  <p class="nikah-day-title">Jumu’ah</p>
+                  <div class="nikah-date-number-wrap">
+                    <span class="nikah-date-number shimmer-text">27</span>
+                  </div>
+                  <p class="nikah-month-year">November 2026</p>
+                  <div class="date-confirm-badge">
+                    <span class="badge-text">Tareekh-e-Nikah Tay Ho Gayi</span>
+                  </div>
+                </div>
+
+                <canvas id="scratchCanvas" class="scratch-canvas" aria-label="Interactive scratch card. Use touch or mouse to reveal the confirmed date."></canvas>
+
+                <div id="scratchHint" class="scratch-finger-hint" aria-hidden="true">
+                  <div class="hint-hand-circle">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#B9914B" stroke-width="2">
+                      <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
+                    </svg>
+                  </div>
+                  <span class="hint-label">Khurchiye (Scratch Here)</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Accessible Fallback Reveal Button -->
+            <div class="date-fallback-action">
+              <button id="fallbackRevealBtn" class="secondary-reveal-btn" aria-label="Reveal confirmed Nikah date immediately without scratching">
+                <span>Reveal Date</span>
+              </button>
+            </div>
+
+            <!-- Post-Reveal Message & Sacred Dua -->
+            <div id="postRevealMessage" class="post-reveal-block" aria-live="polite">
+              <div class="radiant-star-burst" aria-hidden="true">✦</div>
+              <p class="closing-journey-line">Ek nayi manzil ki ibtida</p>
+              
+              <div class="sacred-dua-card">
+                <div class="dua-arch-ornament" aria-hidden="true">
+                  <svg viewBox="0 0 160 30" fill="none">
+                    <path d="M10 25 C50 5 110 5 150 25" stroke="#B9914B" stroke-width="1.2" />
+                    <circle cx="80" cy="11" r="2.5" fill="#B9914B" />
+                  </svg>
+                </div>
+                <blockquote class="sacred-dua-text">
+                  “Allah is rishte ko mohabbat, sukoon aur barkat se bhar de. Aameen.”
+                </blockquote>
+              </div>
+
+              <div class="final-seal-wrapper" aria-hidden="true">
+                <svg class="final-mini-seal" viewBox="0 0 80 80">
+                  <circle cx="40" cy="40" r="37" fill="#123B32" stroke="#B9914B" stroke-width="1.5" />
+                  <circle cx="40" cy="40" r="32" fill="none" stroke="#E2C889" stroke-width="0.8" stroke-dasharray="2 1" />
+                  <text x="26" y="45" font-family="'Cormorant Garamond', Georgia, serif" font-size="16" font-weight="700" fill="#E2C889" text-anchor="middle">A</text>
+                  <path d="M37 38 C37 34 40 32 43 34 C46 36 49 40 39 47 C29 40 31 36 34 34 C37 32 37 34 37 38 Z" fill="#C99B91" transform="scale(0.7) translate(14, 8)" />
+                  <text x="54" y="45" font-family="'Cormorant Garamond', Georgia, serif" font-size="16" font-weight="700" fill="#E2C889" text-anchor="middle">J</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ==========================================
+           SURAH AR-RUM SACRED VERSE CARD
+           ========================================== -->
+      <section id="momentQuranVerse" class="moment-section moment-verse" aria-label="Surah Ar-Rum Ayat-e-Mubarak">
+        <div class="verse-card-wrapper scroll-reveal">
+          <div class="sacred-verse-card">
+            <div class="verse-crest" aria-hidden="true">
+              <svg viewBox="0 0 200 45" fill="none">
+                <path d="M10 40 Q100 -5 190 40" stroke="#B9914B" stroke-width="1.2" />
+                <path d="M30 40 Q100 8 170 40" stroke="#B9914B" stroke-width="0.8" stroke-dasharray="4 2" />
+                <circle cx="100" cy="18" r="3" fill="#E2C889" />
+                <circle cx="75" cy="25" r="1.5" fill="#B9914B" />
+                <circle cx="125" cy="25" r="1.5" fill="#B9914B" />
+              </svg>
+            </div>
+
+            <span class="verse-citation">Surah Ar-Rum (30:21)</span>
+
+            <!-- Arabic Calligraphy -->
+            <blockquote class="arabic-quran-text" lang="ar" dir="rtl">
+              وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً
+            </blockquote>
+
+            <!-- Hindglish Translation -->
+            <p class="verse-translation">
+              “Aur Usne tumhare darmiyan mohabbat aur rehmat paida farma di.”
+            </p>
+
+            <div class="verse-footer-leaf" aria-hidden="true">
+              <span class="leaf-line"></span>
+              <span class="leaf-gem">❦</span>
+              <span class="leaf-line"></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ==========================================
+           KHANDANI MASARRAT & PAIGHAAM-E-MOHABBAT
+           ========================================== -->
+      <section id="momentMessage" class="moment-section moment-message" aria-label="Khaas Paighaam aur Dua-e-Khair">
+        <div class="message-card-wrapper">
+          <div class="message-card scroll-reveal">
+            <div class="mughal-top-crest" aria-hidden="true">
+              <svg viewBox="0 0 180 40" fill="none" class="crest-svg">
+                <path d="M20 35 Q90 0 160 35" stroke="#B9914B" stroke-width="1.4" />
+                <path d="M50 35 Q90 12 130 35" stroke="#B9914B" stroke-width="0.8" stroke-dasharray="3 2" />
+                <circle cx="90" cy="18" r="3" fill="#E2C889" />
+                <circle cx="70" cy="24" r="1.5" fill="#B9914B" />
+                <circle cx="110" cy="24" r="1.5" fill="#B9914B" />
+              </svg>
+            </div>
+
+            <span class="message-badge">Roohani Rabt • Masarrat Ka Paighaam</span>
+            <h2 class="message-title">Duaon Ka Noorani Silsila</h2>
+            <p class="message-subtitle">Khan Family aur Qaazi Family ki janib se ek qalb-e-ehsas</p>
+
+            <div class="message-body-text">
+              <p class="hindglish-verse">
+                “Do pakeezah dilon ka ye haseen safar, Rab-e-Kareem ki raza aur buzurgon ke saya-e-shafqat me tay paaya hai. Mohabbat, wafa aur ehtiraam ki buniyad par qayam hone wala ye paak rishta aap sabhi ki duaon ka talabgaar hai.”
+              </p>
+              <p class="hindglish-invitation">
+                Aapki pur-khuloos duaayein aur nek tamannayein is nayi zindagi ke aaghaz ka sabse anmol tohfa hain. Allah Ta’ala is aashiyanay me hamesha sukoon, afiyat aur khair-o-barkat naseeb farmaye.
+              </p>
+            </div>
+
+            <div class="family-honor-pill">
+              <span class="family-tag">Khan Family</span>
+              <span class="family-separator">♥</span>
+              <span class="family-tag">Qaazi Family</span>
+            </div>
+
+            <div class="message-flourish" aria-hidden="true">
+              <span class="flourish-line"></span>
+              <span class="flourish-star">✦ ❖ ✦</span>
+              <span class="flourish-line"></span>
+            </div>
+
+            <p class="dua-ameen-call">Aapki barkat-khez duaon ke muntazir</p>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ==========================================
+           INTERACTIVE BLESSINGS & WHATSAPP HUB
+           ("Bhejiye Dua" Flower Shower + WhatsApp Wishes)
+           ========================================== -->
+      <section id="momentBlessings" class="moment-section moment-blessings" aria-label="Send Blessings and Share Announcement">
+        <div class="blessings-wrapper scroll-reveal">
+          <div class="blessings-card">
+            <span class="blessings-badge">Dua & Mubarakbaad</span>
+            <h2 class="blessings-title">Rishte Me Barkat Ka Hissa Banein</h2>
+            <p class="blessings-subtext">Apne pyare ahsaas aur duayein dulahe aur dulhan tak pohchayein</p>
+
+            <div class="blessings-action-grid">
+              <!-- 1. Bhejiye Dua (Petal Shower Trigger) -->
+              <button id="sendDuaBtn" class="action-card-btn dua-primary-btn" aria-label="Bhejiye Dua aur Flower Shower Chalayein">
+                <div class="btn-icon-circle">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                  </svg>
+                </div>
+                <div class="btn-text-content">
+                  <span class="btn-main-label">Bhejiye Dua (Flower Shower)</span>
+                  <span class="btn-sub-label">Tap karein phoolon ki barsaat ke liye</span>
+                </div>
+              </button>
+
+              <!-- 2. Direct WhatsApp Mubarakbaad (Without displaying the phone number on screen) -->
+              <a id="whatsappWishBtn" class="action-card-btn whatsapp-direct-btn" href="https://wa.me/918850099335?text=Assalamu%20Alaikum!%20Ms.%20Alfiya%20Khan%20aur%20Mr.%20Jawaad%20Qaazi%20ki%20Tareekh-e-Nikah%20(27%20November%202026)%20tay%20hone%20par%20dili%20mubarakbaad!%20Allah%20is%20rishte%20ko%20barkat%20aur%20sukoon%20se%20nawaze.%20Aameen." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp par mubarakbaad bhejiye">
+                <div class="btn-icon-circle wa-circle">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                  </svg>
+                </div>
+                <div class="btn-text-content">
+                  <span class="btn-main-label">Mubarakbaad Bhejiye</span>
+                  <span class="btn-sub-label">WhatsApp par dili duayein aur paighaam bhejiye</span>
+                </div>
+              </a>
+
+              <!-- 3. Share Announcement with Family & Friends -->
+              <button id="whatsappShareBtn" class="action-card-btn share-btn" aria-label="Family aur friends ke saath WhatsApp par share karein">
+                <div class="btn-icon-circle share-circle">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="18" cy="5" r="3"></circle>
+                    <circle cx="6" cy="12" r="3"></circle>
+                    <circle cx="18" cy="19" r="3"></circle>
+                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                  </svg>
+                </div>
+                <div class="btn-text-content">
+                  <span class="btn-main-label">Share Khushkhabri</span>
+                  <span class="btn-sub-label">Rishtedaaron ko ailan bhejiye</span>
+                </div>
+              </button>
+
+              <!-- 4. Save as Story / Wallpaper Card Image Download -->
+              <button id="downloadStoryBtn" class="action-card-btn download-story-btn" aria-label="Story ya Wallpaper ke liye Card Image Download Karein">
+                <div class="btn-icon-circle story-circle">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                    <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                  </svg>
+                </div>
+                <div class="btn-text-content">
+                  <span class="btn-main-label">Save Status / Wallpaper</span>
+                  <span class="btn-sub-label">WhatsApp status ke liye card download karein</span>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ==========================================
+           INTEZAAR-E-NIKAH (LIVE COUNTDOWN TO GO)
+           ========================================== -->
+      <section id="momentCountdown" class="moment-section moment-countdown" aria-label="Intezaar-e-Nikah Countdown to Go">
+        <div class="countdown-container scroll-reveal">
+          <div class="countdown-header">
+            <span class="countdown-pill">Intezaar-e-Mubarak</span>
+            <h2 class="countdown-title">Khushiyon Ka Shumaar</h2>
+            <p class="countdown-subtext">Jumu’ah, 27 November 2026 aane me baaqi hain:</p>
+          </div>
+
+          <!-- Four Gold Glassmorphism Countdown Cards Grid -->
+          <div class="countdown-grid" id="countdownGrid" aria-live="polite">
+            <div class="countdown-card">
+              <div class="countdown-card-inner">
+                <span class="countdown-number" id="countDays">000</span>
+                <span class="countdown-label">Din (Days)</span>
+              </div>
+              <div class="countdown-card-rim"></div>
+            </div>
+
+            <div class="countdown-card">
+              <div class="countdown-card-inner">
+                <span class="countdown-number" id="countHours">00</span>
+                <span class="countdown-label">Ghante (Hours)</span>
+              </div>
+              <div class="countdown-card-rim"></div>
+            </div>
+
+            <div class="countdown-card">
+              <div class="countdown-card-inner">
+                <span class="countdown-number" id="countMinutes">00</span>
+                <span class="countdown-label">Minute (Mins)</span>
+              </div>
+              <div class="countdown-card-rim"></div>
+            </div>
+
+            <div class="countdown-card seconds-card">
+              <div class="countdown-card-inner">
+                <span class="countdown-number" id="countSeconds">00</span>
+                <span class="countdown-label">Second (Secs)</span>
+              </div>
+              <div class="countdown-card-rim"></div>
+            </div>
+          </div>
+
+          <div class="countdown-status-badge">
+            <span class="live-dot" aria-hidden="true"></span>
+            <span class="status-label">Tareekh Pakki • Duaon Me Yaad Rakhein</span>
+          </div>
+
+          <!-- Add To Calendar Button (.ics calendar export) -->
+          <div class="calendar-action-wrap">
+            <button id="addToCalendarBtn" class="calendar-btn" aria-label="Mehfooz Karein - Add Nikah Date to Calendar">
+              <svg class="calendar-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+              <span>Tareekh Mehfooz Karein (Add to Calendar)</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Small Footer with Exact Content: Alfiya ♥ Jawaad -->
+      <footer class="site-footer">
+        <div class="footer-inner">
+          <div class="footer-seal" aria-hidden="true">
+            <svg viewBox="0 0 50 50" width="40" height="40">
+              <circle cx="25" cy="25" r="23" fill="none" stroke="#B9914B" stroke-width="1.2" />
+              <text x="25" y="29" font-family="'Cormorant Garamond', Georgia, serif" font-size="14" font-weight="700" fill="#E2C889" text-anchor="middle">A ♥ J</text>
+            </svg>
+          </div>
+          <p class="footer-couple-name">Alfiya <span class="footer-heart">♥</span> Jawaad</p>
+          <p class="footer-sub-blessing">Mohabbat Ka Aaghaz • Jumu’ah, 27 November 2026</p>
+        </div>
+      </footer>
+    </div>
+  </main>
+
+  <!-- Hidden Offline Canvas for High-Res Story Card Image Export -->
+  <canvas id="storyExportCanvas" width="1080" height="1920" style="display: none;" aria-hidden="true"></canvas>
+
+  <script src="script.js"></script>
+</body>
+</html>
