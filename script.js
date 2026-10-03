@@ -647,7 +647,7 @@
     whatsappShareBtn.addEventListener('click', () => {
       const shareUrl = window.location.href;
       const shareText = encodeURIComponent(
-        `Alhamdulillah! Ms. Alfiya Khan aur Mr. Jawaad Qaazi ki Tareekh-e-Nikah tay ho gayi hai: Jumu'ah, 27 November 2026.\n\nEk nayi manzil ki ibtida... Dekhiye khas ailan:\n${shareUrl}`
+        `Alhamdulillah! Ms. Alfiya Khan aur Mr. Jawwad Qazi ki Tareekh-e-Nikah tay ho gayi hai: Jumu'ah, 27 November 2026.\n\nEk nayi manzil ki ibtida... Dekhiye khas ailan:\n${shareUrl}`
       );
       const waShareUrl = `https://api.whatsapp.com/send?text=${shareText}`;
       window.open(waShareUrl, '_blank');
@@ -730,7 +730,7 @@
 
       ctx.font = '700 84px "Cormorant Garamond", Georgia, serif';
       ctx.fillStyle = '#123B32';
-      ctx.fillText('Mr. Jawaad Qaazi', W / 2, 980);
+      ctx.fillText('Mr. Jawwad Qazi', W / 2, 980);
 
       ctx.font = 'italic 34px "Cormorant Garamond", Georgia, serif';
       ctx.fillStyle = '#C99B91';
@@ -769,7 +769,7 @@
       // 8. Footer Seal & Couple Monogram
       ctx.fillStyle = '#B9914B';
       ctx.font = '600 36px "Cormorant Garamond", Georgia, serif';
-      ctx.fillText('Alfiya  ♥  Jawaad', W / 2, 1780);
+      ctx.fillText('Alfiya  ♥  Jawwad', W / 2, 1780);
 
       const link = document.createElement('a');
       link.download = 'Mohabbat_Ka_Aaghaz_Alfiya_Jawaad_27Nov2026.png';
@@ -820,7 +820,7 @@
   // ==========================================================================
   if (addToCalendarBtn) {
     addToCalendarBtn.addEventListener('click', () => {
-      const title = 'Nikah: Ms. Alfiya Khan & Mr. Jawaad Qaazi';
+      const title = 'Nikah: Ms. Alfiya Khan & Mr. Jawwad Qazi';
       const description = 'Alhamdulillah! Ailan-e-Tareekh-e-Nikah. Ek nayi manzil ki ibtida. Allah is rishte ko mohabbat, sukoon aur barkat se bhar de. Aameen.';
       const location = 'Confirmed Date Announcement';
       const startDate = '20261127T110000';
